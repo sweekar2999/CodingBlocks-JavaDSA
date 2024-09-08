@@ -25,34 +25,52 @@ public class NextPermutation {
 
 	}
 	public static void next_permutation(int []arr) {
-		   if (arr == null || arr.length < 2) return;
-		
-		int p=-1;
+//		   if (arr == null || arr.length < 2) return;
+//		
+//		int p=-1;
+//		for(int i=arr.length-2;i>=0;i--) {
+//			
+//			if(arr[i]<arr[i+1]) {
+//				p=i;
+//				break;
+//			}
+//			
+//		}
+//		if (p ==-1) {
+//            reverse(arr, 0, arr.length - 1);
+//            return;
+//        }
+//		int q=-1;
+//		for(int i=arr.length-1;i>p;i--) {
+//			if(arr[i]>arr[p]) {
+//				q=i;
+//				break;
+//			}
+//		}
+//		int temp=arr[p];
+//		arr[p]=arr[q];
+//		arr[q]=temp;
+//		reverse(arr, p + 1, arr.length - 1);
+//		
+//		
+		int ind=-1;
 		for(int i=arr.length-2;i>=0;i--) {
-			
 			if(arr[i]<arr[i+1]) {
-				p=i;
-				break;
-			}
-			
-		}
-		if (p ==-1) {
-            reverse(arr, 0, arr.length - 1);
-            return;
-        }
-		int q=-1;
-		for(int i=arr.length-1;i>p;i--) {
-			if(arr[i]>arr[p]) {
-				q=i;
+				ind=i;
 				break;
 			}
 		}
-		int temp=arr[p];
-		arr[p]=arr[q];
-		arr[q]=temp;
-		reverse(arr, p + 1, arr.length - 1);
-		
-		
+		if(ind==-1) {
+			reverse(arr,0,arr.length-1);
+		}
+		for(int i=arr.length-1;i>=0;i--) {
+			if(arr[i]>arr[ind]) {
+				int temp=arr[ind];
+				arr[ind]=arr[i];
+				arr[i]=temp;
+			}
+		}
+		reverse(arr,ind+1,arr.length-1);
 	}
 	public static void reverse(int []arr,int left,int right) {
 		while(left<right) {
